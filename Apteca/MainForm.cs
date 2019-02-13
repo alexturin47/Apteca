@@ -23,6 +23,8 @@ namespace Apteca
             // TODO: данная строка кода позволяет загрузить данные в таблицу "aptecaDataSet.тип_медикаментов". При необходимости она может быть перемещена или удалена.
             this.тип_медикаментовTableAdapter.Fill(this.aptecaDataSet.тип_медикаментов);
 
+
+
         }
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,11 +38,35 @@ namespace Apteca
             var result = MessageBox.Show("Вы собираетесь безвозвратно удалить из базы \n" + item + "\n Вы уверены ? ", "Удаление из базы", MessageBoxButtons.YesNo);
 
 
-            if ( result == DialogResult.OK)
+            if ( result == DialogResult.Yes)
             {
                 // удаляем из таблицы "Медикаменты"  текущую строку
+                if (dataGridView1.CurrentRow != null)
+                {
+                    dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+                    медикаментыTableAdapter.Update(aptecaDataSet);
+                }
             }
             
         }
+
+        private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // правка строки с медикаментом
+            
+            editForm EditForm = new editForm();
+            EditForm.Owner = this;
+            EditForm.ShowDialog();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            FormAdd formAdd = new FormAdd();
+            formAdd.Owner = this;
+            formAdd.ShowDialog();
+        }
     }
 }
+
+
+// TODO  закончил на добавлении нового препарата в базу
