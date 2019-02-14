@@ -44,29 +44,31 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.типмедикаментовBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.aptecaDataSet = new Apteca.aptecaDataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nAMEMEDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.продажаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поступлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.типмедикаментовмедикаментыBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.тип_медикаментовTableAdapter = new Apteca.aptecaDataSetTableAdapters.тип_медикаментовTableAdapter();
-            this.медикаментыTableAdapter = new Apteca.aptecaDataSetTableAdapters.медикаментыTableAdapter();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.aptecaDataSet = new Apteca.aptecaDataSet();
+            this.типмедикаментовBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.тип_медикаментовTableAdapter = new Apteca.aptecaDataSetTableAdapters.тип_медикаментовTableAdapter();
+            this.типмедикаментовмедикаментыBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.медикаментыTableAdapter = new Apteca.aptecaDataSetTableAdapters.медикаментыTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nAMEMEDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.arrivalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aptecaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.aptecaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовмедикаментыBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,7 +183,6 @@
             // 
             // comboBoxCategory
             // 
-            this.comboBoxCategory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.типмедикаментовBindingSource, "type", true));
             this.comboBoxCategory.DataSource = this.типмедикаментовBindingSource;
             this.comboBoxCategory.DisplayMember = "type";
             this.comboBoxCategory.FormattingEnabled = true;
@@ -190,16 +191,6 @@
             this.comboBoxCategory.Size = new System.Drawing.Size(277, 21);
             this.comboBoxCategory.TabIndex = 0;
             this.comboBoxCategory.ValueMember = "ID";
-            // 
-            // типмедикаментовBindingSource
-            // 
-            this.типмедикаментовBindingSource.DataMember = "тип_медикаментов";
-            this.типмедикаментовBindingSource.DataSource = this.aptecaDataSet;
-            // 
-            // aptecaDataSet
-            // 
-            this.aptecaDataSet.DataSetName = "aptecaDataSet";
-            this.aptecaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.ExcludeSchema;
             // 
             // dataGridView1
             // 
@@ -211,45 +202,17 @@
             this.iDDataGridViewTextBoxColumn,
             this.nAMEMEDDataGridViewTextBoxColumn,
             this.iDtypeDataGridViewTextBoxColumn,
+            this.sellDataGridViewTextBoxColumn,
+            this.arrivalDataGridViewTextBoxColumn,
             this.countDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.DataSource = this.типмедикаментовмедикаментыBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(13, 124);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(472, 308);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nAMEMEDDataGridViewTextBoxColumn
-            // 
-            this.nAMEMEDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nAMEMEDDataGridViewTextBoxColumn.DataPropertyName = "NAME_MED";
-            this.nAMEMEDDataGridViewTextBoxColumn.HeaderText = "Наименование";
-            this.nAMEMEDDataGridViewTextBoxColumn.Name = "nAMEMEDDataGridViewTextBoxColumn";
-            this.nAMEMEDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDtypeDataGridViewTextBoxColumn
-            // 
-            this.iDtypeDataGridViewTextBoxColumn.DataPropertyName = "ID_type";
-            this.iDtypeDataGridViewTextBoxColumn.HeaderText = "ID_type";
-            this.iDtypeDataGridViewTextBoxColumn.Name = "iDtypeDataGridViewTextBoxColumn";
-            this.iDtypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDtypeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // countDataGridViewTextBoxColumn
-            // 
-            this.countDataGridViewTextBoxColumn.DataPropertyName = "count";
-            this.countDataGridViewTextBoxColumn.HeaderText = "Количество";
-            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
-            this.countDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -293,19 +256,6 @@
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
-            // типмедикаментовмедикаментыBindingSource
-            // 
-            this.типмедикаментовмедикаментыBindingSource.DataMember = "тип_медикаментовмедикаменты";
-            this.типмедикаментовмедикаментыBindingSource.DataSource = this.типмедикаментовBindingSource;
-            // 
-            // тип_медикаментовTableAdapter
-            // 
-            this.тип_медикаментовTableAdapter.ClearBeforeFill = true;
-            // 
-            // медикаментыTableAdapter
-            // 
-            this.медикаментыTableAdapter.ClearBeforeFill = true;
-            // 
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(13, 439);
@@ -315,6 +265,76 @@
             this.buttonAdd.Text = "Добавить медикамент в базу";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // aptecaDataSet
+            // 
+            this.aptecaDataSet.DataSetName = "aptecaDataSet";
+            this.aptecaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // типмедикаментовBindingSource
+            // 
+            this.типмедикаментовBindingSource.DataMember = "тип_медикаментов";
+            this.типмедикаментовBindingSource.DataSource = this.aptecaDataSet;
+            // 
+            // тип_медикаментовTableAdapter
+            // 
+            this.тип_медикаментовTableAdapter.ClearBeforeFill = true;
+            // 
+            // типмедикаментовмедикаментыBindingSource
+            // 
+            this.типмедикаментовмедикаментыBindingSource.DataMember = "тип_медикаментовмедикаменты";
+            this.типмедикаментовмедикаментыBindingSource.DataSource = this.типмедикаментовBindingSource;
+            // 
+            // медикаментыTableAdapter
+            // 
+            this.медикаментыTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nAMEMEDDataGridViewTextBoxColumn
+            // 
+            this.nAMEMEDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nAMEMEDDataGridViewTextBoxColumn.DataPropertyName = "NAME_MED";
+            this.nAMEMEDDataGridViewTextBoxColumn.HeaderText = "Наименование";
+            this.nAMEMEDDataGridViewTextBoxColumn.Name = "nAMEMEDDataGridViewTextBoxColumn";
+            this.nAMEMEDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDtypeDataGridViewTextBoxColumn
+            // 
+            this.iDtypeDataGridViewTextBoxColumn.DataPropertyName = "ID_type";
+            this.iDtypeDataGridViewTextBoxColumn.HeaderText = "ID_type";
+            this.iDtypeDataGridViewTextBoxColumn.Name = "iDtypeDataGridViewTextBoxColumn";
+            this.iDtypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDtypeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // sellDataGridViewTextBoxColumn
+            // 
+            this.sellDataGridViewTextBoxColumn.DataPropertyName = "sell";
+            this.sellDataGridViewTextBoxColumn.HeaderText = "sell";
+            this.sellDataGridViewTextBoxColumn.Name = "sellDataGridViewTextBoxColumn";
+            this.sellDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sellDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // arrivalDataGridViewTextBoxColumn
+            // 
+            this.arrivalDataGridViewTextBoxColumn.DataPropertyName = "arrival";
+            this.arrivalDataGridViewTextBoxColumn.HeaderText = "arrival";
+            this.arrivalDataGridViewTextBoxColumn.Name = "arrivalDataGridViewTextBoxColumn";
+            this.arrivalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.arrivalDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // countDataGridViewTextBoxColumn
+            // 
+            this.countDataGridViewTextBoxColumn.DataPropertyName = "count";
+            this.countDataGridViewTextBoxColumn.HeaderText = "Количество";
+            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
+            this.countDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -335,10 +355,10 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aptecaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.aptecaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.типмедикаментовмедикаментыBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -369,16 +389,18 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+        private System.Windows.Forms.Button buttonAdd;
         public aptecaDataSet aptecaDataSet;
-        private aptecaDataSetTableAdapters.тип_медикаментовTableAdapter тип_медикаментовTableAdapter;
+        public System.Windows.Forms.BindingSource типмедикаментовBindingSource;
+        public aptecaDataSetTableAdapters.тип_медикаментовTableAdapter тип_медикаментовTableAdapter;
         public System.Windows.Forms.BindingSource типмедикаментовмедикаментыBindingSource;
         public aptecaDataSetTableAdapters.медикаментыTableAdapter медикаментыTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nAMEMEDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDtypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn arrivalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button buttonAdd;
-        public System.Windows.Forms.BindingSource типмедикаментовBindingSource;
     }
 }
 

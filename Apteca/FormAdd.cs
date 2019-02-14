@@ -40,11 +40,13 @@ namespace Apteca
 
             DataRow row = dt.NewRow();
             row["NAME_MED"] = textBox1.Text;
-            row["count"] = counter.Value;
+            row["arrival"] = counter.Value;
+            row["sell"] = 0;
             row["ID_type"] = main.comboBoxCategory.SelectedValue;
             dt.Rows.Add(row);
             main.типмедикаментовмедикаментыBindingSource.EndEdit();
             main.медикаментыTableAdapter.Update(main.aptecaDataSet);
+            main.медикаментыTableAdapter.Fill(main.aptecaDataSet.медикаменты);
             Close();            
         }
 
