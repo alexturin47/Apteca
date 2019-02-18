@@ -12,10 +12,10 @@ namespace Apteca
 {
     public partial class MainForm : Form
     {
-        public static string connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=apteca.accdb;";
-        //public static string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=apteca.accdb";
+        //public static string connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=apteca.accdb;";
+        public static string connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=apteca.accdb";
 
-        private OleDbConnection myConnect;
+        public OleDbConnection myConnect;
 
         public MainForm()
         {
@@ -27,31 +27,43 @@ namespace Apteca
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "aptecaDataSet.медикаменты". При необходимости она может быть перемещена или удалена.
-            //this.медикаментыTableAdapter.Fill(this.aptecaDataSet.медикаменты);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "aptecaDataSet.тип_медикаментов". При необходимости она может быть перемещена или удалена.
-            //this.тип_медикаментовTableAdapter.Fill(this.aptecaDataSet.тип_медикаментов);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "aptecaDataSet.медикаменты". При необходимости она может быть перемещена или удалена.
-            //this.медикаментыTableAdapter.Fill(this.aptecaDataSet.медикаменты);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "aptecaDataSet.тип_медикаментов". При необходимости она может быть перемещена или удалена.
-            //this.тип_медикаментовTableAdapter.Fill(this.aptecaDataSet.тип_медикаментов);
+            refreshComboCat();
+            refreshGrid();
+        }
+
+        private void refreshComboCat()
+        {
+            string query = "SELECT * FROM тип_медикаментов ORDER BY ID";
+            OleDbDataAdapter da = new OleDbDataAdapter(query, myConnect);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            comboBoxCategory.DataSource = dt;
+            comboBoxCategory.DisplayMember = "type";
+            comboBoxCategory.ValueMember = "ID";
+            comboBoxCategory.SelectedIndex = 0;
         }
 
         private void refreshGrid()
         {
-            int id = (Int32)comboBoxCategory.SelectedValue;
-            string query = "SELECT * FROM медикаменты WHERE [ID_type] = id ORDER BY NAME_MED";
+            DataRowView item = (DataRowView)comboBoxCategory.SelectedItem;
+            string id = item["ID"].ToString();
+            string query = "SELECT * FROM медикаменты WHERE [ID_type] = " + id +  " ORDER BY NAME_MED";
             OleDbCommand command = new OleDbCommand(query, myConnect);
-            OleDbDataReader reader = command.ExecuteReader();
 
-            dataGridView1.Rows.Clear();
-            while (reader.Read())
-            {
-                string namemed = reader["NAME_MED"].ToString();
-                string count = reader["count"].ToString();
-                string arrival = reader["arrival"].ToString();
-                string sell = reader["sell"].ToString();
-            }
+            OleDbDataAdapter da = new OleDbDataAdapter(query, myConnect);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            dataGridView1.DataSource = dt;
+            dataGridView1.Columns["ID"].Visible = false;
+            dataGridView1.Columns["ID_type"].Visible = false;
+            dataGridView1.Columns["arrival"].Visible = false;
+            dataGridView1.Columns["sell"].Visible = false;
+            dataGridView1.Columns["NAME_MED"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["NAME_MED"].HeaderText = "Наименование";
+
+            dataGridView1.Columns["count"].HeaderText = "В наличии";
         }
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,8 +82,11 @@ namespace Apteca
                 // удаляем из таблицы "Медикаменты"  текущую строку
                 if (dataGridView1.CurrentRow != null)
                 {
-                    dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
-                    //медикаментыTableAdapter.Update(aptecaDataSet);
+                    string id  = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+                    string query = "DELETE FROM медикаменты WHERE ID =" + id;
+                    OleDbCommand command = new OleDbCommand(query, myConnect);
+                    command.ExecuteNonQuery();
+                    refreshGrid();
                 }
             }
             
@@ -83,24 +98,87 @@ namespace Apteca
             
             editForm EditForm = new editForm();
             EditForm.Owner = this;
-            EditForm.ShowDialog();
+            if (EditForm.ShowDialog() == DialogResult.OK) refreshGrid();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             FormAdd formAdd = new FormAdd();
             formAdd.Owner = this;
-            formAdd.ShowDialog();
+            if (formAdd.ShowDialog() == DialogResult.OK) refreshGrid();
         }
 
         private void поступлениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormArrival formArrival = new FormArrival();
             formArrival.Owner = this;
-            formArrival.ShowDialog();
+            if (formArrival.ShowDialog() == DialogResult.OK) refreshGrid();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myConnect.Close();
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshGrid();
+        }
+
+        private void продажаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSell formSell = new FormSell();
+            formSell.Owner = this;
+            if(formSell.ShowDialog() == DialogResult.OK) refreshGrid();
+        }
+
+        private void категориюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAddCat formAddCat = new FormAddCat();
+            formAddCat.Owner = this;
+            if(formAddCat.ShowDialog() == DialogResult.OK)
+            {
+                refreshComboCat();
+                refreshGrid();
+            }
+           
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            for( int i = 0; i < dataGridView1.RowCount - 1; i++)
+            {
+                string str = dataGridView1.Rows[i].Cells["NAME_MED"].Value.ToString().ToLower();
+
+                if(str.Contains(textBox1.Text) == true)
+                {
+                    dataGridView1.Rows[i].Selected = true;
+                }
+                else
+                {
+                    dataGridView1.Rows[i].Selected = false;
+                }
+
+                if (textBox1.Text == "") dataGridView1.Rows[i].Selected = false;
+
+            }
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" Учет медикаментов v 1.0");
+        }
+
+        private void медикаментToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            buttonAdd_Click(sender, e);
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            myConnect.Close();
+            Application.Exit();
         }
     }
 }
 
-
-// TODO  закончил на добавлении нового препарата в базу

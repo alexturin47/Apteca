@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace Apteca
 {
@@ -25,29 +26,14 @@ namespace Apteca
         {
             
             MainForm main = this.Owner as MainForm;
-            //DataTable dt = main.aptecaDataSet.Tables[0];
 
-            // проверка на совпадение наименования
-            //DataView custView = new DataView(dt, "", "NAME_MED", DataViewRowState.CurrentRows);
-
-            /*int rowIndex = custView.Find(textBox1.Text);
-
-            if (rowIndex != -1)
-            {
-                MessageBox.Show("Препарат с таким наименованием уже есть в базе!");
-                return;
-            }*/
-
-            /*DataRow row = dt.NewRow();
-            row["NAME_MED"] = textBox1.Text;
-            row["arrival"] = counter.Value;
-            row["sell"] = 0;
-            row["ID_type"] = main.comboBoxCategory.SelectedValue;
-            */
-            //dt.Rows.Add(row);
-            //main.типмедикаментовмедикаментыBindingSource.EndEdit();
-            //main.медикаментыTableAdapter.Update(main.aptecaDataSet);
-            //main.медикаментыTableAdapter.Fill(main.aptecaDataSet.медикаменты);
+            DataRowView rv = (DataRowView)main.comboBoxCategory.SelectedItem;
+            int cat_id = (Int32)rv["ID"];
+            
+            string query = "INSERT INTO медикаменты ([NAME_MED],[ID_type], [arrival]) VALUES ('" + textBox1.Text + "', "+ 
+                cat_id +", " + counter.Value + ")";
+            OleDbCommand command = new OleDbCommand(query, main.myConnect);
+            command.ExecuteNonQuery();
             Close();            
         }
 

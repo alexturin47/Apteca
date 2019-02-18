@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace Apteca
 {
@@ -30,12 +31,11 @@ namespace Apteca
         private void buttonOk_Click(object sender, EventArgs e)
         {
             MainForm main = this.Owner as MainForm;
-            //DataTable dt = main.aptecaDataSet.Tables["медикаменты"];
-                        
-            main.dataGridView1.CurrentRow.Cells["NAME_MED"].Value = textBox1.Text;
-            //main.типмедикаментовмедикаментыBindingSource.EndEdit();
 
-            //main.медикаментыTableAdapter.Update(main.aptecaDataSet.медикаменты);
+            string id = main.dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+            string query = "UPDATE медикаменты SET [NAME_MED] = '" + textBox1.Text + "' WHERE ID = " + id;
+            OleDbCommand command = new OleDbCommand( query, main.myConnect);
+            command.ExecuteNonQuery();
             Close();
         }
     }

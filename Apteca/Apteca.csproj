@@ -68,6 +68,12 @@
     <Compile Include="editForm.Designer.cs">
       <DependentUpon>editForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddCat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddCat.Designer.cs">
+      <DependentUpon>FormAddCat.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormArrival.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,12 @@
     <Compile Include="FormAdd.Designer.cs">
       <DependentUpon>FormAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSell.Designer.cs">
+      <DependentUpon>FormSell.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,11 +103,17 @@
     <EmbeddedResource Include="editForm.resx">
       <DependentUpon>editForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddCat.resx">
+      <DependentUpon>FormAddCat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormArrival.resx">
       <DependentUpon>FormArrival.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdd.resx">
       <DependentUpon>FormAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSell.resx">
+      <DependentUpon>FormSell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
