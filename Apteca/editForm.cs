@@ -30,12 +30,12 @@ namespace Apteca
         private void buttonOk_Click(object sender, EventArgs e)
         {
             MainForm main = this.Owner as MainForm;
-            DataTable dt = main.aptecaDataSet.Tables["медикаменты"];
+            //DataTable dt = main.aptecaDataSet.Tables["медикаменты"];
+                        
+            main.dataGridView1.CurrentRow.Cells["NAME_MED"].Value = textBox1.Text;
+            //main.типмедикаментовмедикаментыBindingSource.EndEdit();
 
-            main.dataGridView1.CurrentRow.Cells[1].Value = textBox1.Text;
-            main.типмедикаментовмедикаментыBindingSource.EndEdit();
-
-            main.медикаментыTableAdapter.Update(main.aptecaDataSet.медикаменты);
+            //main.медикаментыTableAdapter.Update(main.aptecaDataSet.медикаменты);
             Close();
         }
     }

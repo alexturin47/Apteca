@@ -25,28 +25,29 @@ namespace Apteca
         {
             
             MainForm main = this.Owner as MainForm;
-            DataTable dt = main.aptecaDataSet.Tables[0];
+            //DataTable dt = main.aptecaDataSet.Tables[0];
 
             // проверка на совпадение наименования
-            DataView custView = new DataView(dt, "", "NAME_MED", DataViewRowState.CurrentRows);
+            //DataView custView = new DataView(dt, "", "NAME_MED", DataViewRowState.CurrentRows);
 
-            int rowIndex = custView.Find(textBox1.Text);
+            /*int rowIndex = custView.Find(textBox1.Text);
 
             if (rowIndex != -1)
             {
                 MessageBox.Show("Препарат с таким наименованием уже есть в базе!");
                 return;
-            }
+            }*/
 
-            DataRow row = dt.NewRow();
+            /*DataRow row = dt.NewRow();
             row["NAME_MED"] = textBox1.Text;
             row["arrival"] = counter.Value;
             row["sell"] = 0;
             row["ID_type"] = main.comboBoxCategory.SelectedValue;
-            dt.Rows.Add(row);
-            main.типмедикаментовмедикаментыBindingSource.EndEdit();
-            main.медикаментыTableAdapter.Update(main.aptecaDataSet);
-            main.медикаментыTableAdapter.Fill(main.aptecaDataSet.медикаменты);
+            */
+            //dt.Rows.Add(row);
+            //main.типмедикаментовмедикаментыBindingSource.EndEdit();
+            //main.медикаментыTableAdapter.Update(main.aptecaDataSet);
+            //main.медикаментыTableAdapter.Fill(main.aptecaDataSet.медикаменты);
             Close();            
         }
 
