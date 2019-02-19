@@ -27,11 +27,23 @@ namespace Apteca
             
             MainForm main = this.Owner as MainForm;
 
+            // проверка на совпадение наименования
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT [NAME_MED] FROM медикаменты ORDER BY NAME_MED", main.myConnect);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            DataView custView = new DataView(dt, "", "NAME_MED", DataViewRowState.CurrentRows);
+            int rowIndex = custView.Find(textBox1.Text);
+
+            if (rowIndex != -1)
+            {
+                MessageBox.Show("Препарат с таким наименованием уже есть в базе!");
+                return;
+            }
+
+
             DataRowView rv = (DataRowView)main.comboBoxCategory.SelectedItem;
             int cat_id = (Int32)rv["ID"];
-            
-
-
 
             string query = "INSERT INTO медикаменты ([NAME_MED],[ID_type], [arrival]) VALUES ('" + textBox1.Text + "', "+ 
                 cat_id +", " + counter.Value + ")";
