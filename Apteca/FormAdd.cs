@@ -30,6 +30,9 @@ namespace Apteca
             DataRowView rv = (DataRowView)main.comboBoxCategory.SelectedItem;
             int cat_id = (Int32)rv["ID"];
             
+
+
+
             string query = "INSERT INTO медикаменты ([NAME_MED],[ID_type], [arrival]) VALUES ('" + textBox1.Text + "', "+ 
                 cat_id +", " + counter.Value + ")";
             OleDbCommand command = new OleDbCommand(query, main.myConnect);

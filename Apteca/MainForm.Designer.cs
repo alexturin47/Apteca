@@ -52,6 +52,10 @@
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelAll = new System.Windows.Forms.Label();
+            this.labelCount = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -86,13 +90,13 @@
             this.toolStripSeparator2,
             this.медикаментToolStripMenuItem});
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             // 
             // категориюToolStripMenuItem
             // 
             this.категориюToolStripMenuItem.Name = "категориюToolStripMenuItem";
-            this.категориюToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.категориюToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.категориюToolStripMenuItem.Text = "Категорию";
             this.категориюToolStripMenuItem.Click += new System.EventHandler(this.категориюToolStripMenuItem_Click);
             // 
@@ -104,7 +108,7 @@
             // медикаментToolStripMenuItem
             // 
             this.медикаментToolStripMenuItem.Name = "медикаментToolStripMenuItem";
-            this.медикаментToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.медикаментToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.медикаментToolStripMenuItem.Text = "Медикамент";
             this.медикаментToolStripMenuItem.Click += new System.EventHandler(this.медикаментToolStripMenuItem_Click);
             // 
@@ -116,7 +120,7 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -132,7 +136,7 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
@@ -147,6 +151,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelCount);
+            this.panel1.Controls.Add(this.labelAll);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBoxCategory);
@@ -212,33 +220,33 @@
             // продажаToolStripMenuItem
             // 
             this.продажаToolStripMenuItem.Name = "продажаToolStripMenuItem";
-            this.продажаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.продажаToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.продажаToolStripMenuItem.Text = "Продажа";
             this.продажаToolStripMenuItem.Click += new System.EventHandler(this.продажаToolStripMenuItem_Click);
             // 
             // поступлениеToolStripMenuItem
             // 
             this.поступлениеToolStripMenuItem.Name = "поступлениеToolStripMenuItem";
-            this.поступлениеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.поступлениеToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.поступлениеToolStripMenuItem.Text = "Поступление";
             this.поступлениеToolStripMenuItem.Click += new System.EventHandler(this.поступлениеToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(151, 6);
             // 
             // редактироватьToolStripMenuItem
             // 
             this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
-            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
             this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
@@ -251,6 +259,44 @@
             this.buttonAdd.Text = "Добавить медикамент в базу";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(300, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Наименований:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(300, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Едениц товара:";
+            // 
+            // labelAll
+            // 
+            this.labelAll.AutoSize = true;
+            this.labelAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAll.Location = new System.Drawing.Point(389, 7);
+            this.labelAll.Name = "labelAll";
+            this.labelAll.Size = new System.Drawing.Size(17, 17);
+            this.labelAll.TabIndex = 5;
+            this.labelAll.Text = "0";
+            // 
+            // labelCount
+            // 
+            this.labelCount.AutoSize = true;
+            this.labelCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount.Location = new System.Drawing.Point(389, 27);
+            this.labelCount.Name = "labelCount";
+            this.labelCount.Size = new System.Drawing.Size(17, 17);
+            this.labelCount.TabIndex = 6;
+            this.labelCount.Text = "0";
             // 
             // MainForm
             // 
@@ -304,6 +350,10 @@
         private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label labelCount;
+        private System.Windows.Forms.Label labelAll;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
 

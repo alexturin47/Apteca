@@ -49,7 +49,7 @@ namespace Apteca
             DataRowView item = (DataRowView)comboBoxCategory.SelectedItem;
             string id = item["ID"].ToString();
             string query = "SELECT * FROM медикаменты WHERE [ID_type] = " + id +  " ORDER BY NAME_MED";
-            OleDbCommand command = new OleDbCommand(query, myConnect);
+            //OleDbCommand command = new OleDbCommand(query, myConnect);
 
             OleDbDataAdapter da = new OleDbDataAdapter(query, myConnect);
             DataTable dt = new DataTable();
@@ -62,8 +62,46 @@ namespace Apteca
             dataGridView1.Columns["sell"].Visible = false;
             dataGridView1.Columns["NAME_MED"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["NAME_MED"].HeaderText = "Наименование";
-
             dataGridView1.Columns["count"].HeaderText = "В наличии";
+            recountItem();
+        }
+
+        private void recountItem()
+        {
+            labelCount.Text = "0";
+            labelAll.Text = "0";
+            DataRowView item = (DataRowView)comboBoxCategory.SelectedItem;
+            string id = item["ID"].ToString();
+            string query = "SELECT [count] FROM медикаменты WHERE ID_type=" + id;
+
+            OleDbCommand command = new OleDbCommand(query, myConnect);
+            OleDbDataReader reader = command.ExecuteReader();
+            int all_med = 0;
+            int count_med = 0;
+            int countIndex = reader.GetOrdinal("count");
+            while (reader.Read())
+            {
+                count_med++;
+                all_med += Convert.ToInt32(reader.GetValue(countIndex));
+            }
+            labelAll.Text = count_med.ToString();
+            labelCount.Text = all_med.ToString();
+            /*OleDbDataAdapter da = new OleDbDataAdapter(query, myConnect);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if( dt.Rows != null)
+            {
+                int all_med = 0;
+                foreach( DataRow row in dt.Rows)
+                {
+                    all_med += Convert.ToInt32(row["count"]);
+                }
+                labelAll.Text = dt.Rows.Count.ToString();
+                labelCount.Text = all_med.ToString();
+            }
+            */
+
         }
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
