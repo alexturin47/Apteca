@@ -31,6 +31,7 @@ namespace Apteca
             refreshGrid();
         }
 
+        // обновление комбобокса "Категории" после внесения изменений в базу.
         private void refreshComboCat()
         {
             string query = "SELECT * FROM тип_медикаментов ORDER BY ID";
@@ -44,6 +45,7 @@ namespace Apteca
             comboBoxCategory.SelectedIndex = 0;
         }
 
+        // обновление DataGridView после внесения изменений в базу
         private void refreshGrid()
         {
             DataRowView item = (DataRowView)comboBoxCategory.SelectedItem;
@@ -66,6 +68,7 @@ namespace Apteca
             recountItem();
         }
 
+        // пересчет счетчиков наименований медикаментов в категории и обего кол-ва медикаментов в категории
         private void recountItem()
         {
             labelCount.Text = "0";
@@ -86,22 +89,6 @@ namespace Apteca
             }
             labelAll.Text = count_med.ToString();
             labelCount.Text = all_med.ToString();
-            /*OleDbDataAdapter da = new OleDbDataAdapter(query, myConnect);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            if( dt.Rows != null)
-            {
-                int all_med = 0;
-                foreach( DataRow row in dt.Rows)
-                {
-                    all_med += Convert.ToInt32(row["count"]);
-                }
-                labelAll.Text = dt.Rows.Count.ToString();
-                labelCount.Text = all_med.ToString();
-            }
-            */
-
         }
 
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
